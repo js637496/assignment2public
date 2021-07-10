@@ -49,6 +49,7 @@ node_observer.addService(pg.Execute(shell="sh", command="sudo /local/repository/
 
 #Set mount the NFS director in the server, set up the cronjob
 node_webserver.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/webserver_setup_complete.sh"))
+node_webserver.addService(pg.Execute(shell="sh", command="sudo /local/repository/webserver_setup_complete.sh"))
 
 
 # Print the generated rspec
