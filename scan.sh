@@ -20,7 +20,7 @@ do
 	IFS=' ' read -r -a array <<< "$line"
 	for index in "${!array[@]}"
 	do
-		if [[ "$index" -lt 4 ]]
+		if [[ "$index" -lt 3 ]]
 		then
 			if [[ "$index" -eq 2 ]]
 			then
