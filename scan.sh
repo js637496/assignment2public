@@ -29,6 +29,7 @@ do
 			fi
 			DATE+=${array[index]}" "
 		fi
+		echo $DATE
 
 		if [[ "${array[index]}" == "port" ]]
 		then
