@@ -42,6 +42,6 @@ do
 	then
 		COUNTRY=$(whois $IP_ADDRESS | grep country -i -m 1 |cut -d ':' -f 2 |xargs)
 		logLine=$IP_ADDRESS" "$COUNTRY" "$DATE
-		echo $logLine >> /var/webserver_log/unauthorized.log
+		sudo echo "$logLine" | sudo tee -a /var/webserver_log/unauthorized.log
 	fi
 done < <(sudo grep sshd\\[[0-9].\*Failed /var/log/auth.log)

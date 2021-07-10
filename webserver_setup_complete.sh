@@ -6,5 +6,5 @@ sudo touch /var/webserver_log/nfs_is_working.txt
 
 #set up the scan.sh cron job
 (
-    echo "*/5 * * * * /local/repository/scan.sh"
+    echo "*/5 * * * * sudo bash /local/repository/scan.sh"
 ) | sudo crontab -u root -
