@@ -5,7 +5,7 @@
 lastLog=$(tail -1 /var/webserver_log/unauthorized.log)
 echo $lastlog
 IFS=' ' read -r -a lastarray <<< "$lastLog"
-prevDateStr=${lastarray[2]}" "${lastarray[3]}" "${lastarray[4]} ${lastarray[5]}
+prevDateStr=${lastarray[2]}" "${lastarray[3]}" "${lastarray[4]}" "${lastarray[5]}
 echo $prevDateStr
 prevDate=$(date -d $prevDateStr + +%s)
 echo $prevDate
