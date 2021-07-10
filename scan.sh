@@ -38,7 +38,7 @@ do
 	done
 
 	currentDate=$(date --date="$DATE" +%s)
-	if [[ $currentDate -gt $preDate ]]
+	if [[ $currentDate -gt $prevDate ]]
 	then
 		COUNTRY=$(whois $IP_ADDRESS | grep country -i -m 1 |cut -d ':' -f 2 |xargs)
 		logLine=$IP_ADDRESS" "$COUNTRY" "$DATE
