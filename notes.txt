@@ -1,0 +1,47 @@
+webserver
+sudo apt update
+sudo apt install apache2
+sudo apt install whois
+
+
+get public ip
+ifconfig
+inet value
+155.98.38.240
+
+
+get ip from website hostname -i
+allow password logins
+sudo nano /etc/ssh/sshd_config
+uncomment PasswordAuthentication yes
+sudo systemctl restart sshd
+
+notes for server script
+sudo grep sshd\\[[0-9].\*Failed /var/log/auth.log | less
+
+
+observer notes
+sudo apt update
+sudo apt install nfs-kernel-server
+sudo mkdir /var/webserver_monitor
+sudo chmod 777 /var/webserver_monitor/
+
+allow subnet to access nfs directory
+sudo nano /etc/exports
+add line
+/var/webserver_monitor 155.98.38.240(rw,sync)
+https://www.tecmint.com/install-nfs-server-on-ubuntu/
+
+allow firewall access on observer to server ip
+sudo ufw allow from 155.98.38.240 to any port nfs
+sudo ufw enable
+sudo ufw status
+
+on server
+sudo apt update
+sudo apt install nfs-common
+sudo mkdir /var/webserver_log
+
+get ip of observer
+on server mount the nfs drive
+sudo mount 172.20.2.8:/var/webserver_monitor  /var/webserver_log
