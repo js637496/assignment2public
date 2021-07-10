@@ -7,7 +7,7 @@ echo $lastlog
 IFS=' ' read -r -a lastarray <<< "$lastLog"
 prevDateStr=${lastarray[2]}" "${lastarray[3]}" "${lastarray[4]}" "${lastarray[5]}
 echo $prevDateStr
-prevDate=$(date --date=$prevDateStr +%s)
+prevDate=$(date --date="$prevDateStr" +%s)
 echo $prevDate
 
 while read line
@@ -37,10 +37,10 @@ do
 		fi		
 	done
 
-	currentDate=$(date --date=$DATE +%s)
+	currentDate=$(date --date="$DATE" +%s)
 	if [[ $currentDate -gt $preDate ]]
 	then
-		COUNTRY=$(whois $IP_ADDRESS |grep country -i -m 1 |cut -d ':' -f 2 |xargs)
+		COUNTRY=$(whois $IP_ADDRESS | grep country -i -m 1 |cut -d ':' -f 2 |xargs)
 		logLine=$IP_ADDRESS" "$COUNTRY" "$DATE
 		echo $logLine >> /var/webserver_log/unauthorized.log
 	fi
