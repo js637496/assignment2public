@@ -7,9 +7,8 @@ echo $lastlog
 IFS=' ' read -r -a lastarray <<< "$lastLog"
 prevDateStr=${lastarray[2]}" "${lastarray[3]}" "${lastarray[4]}" "${lastarray[5]}
 echo $prevDateStr
-prevDate=$(date -d $prevDateStr + +%s)
+prevDate=$(date --date=$prevDateStr +%s)
 echo $prevDate
-
 
 while read line
 do
@@ -37,8 +36,12 @@ do
 			IP_ADDRESS=${array[before]}
 		fi		
 	done
-	#TODO check i9f date is after last date in log, otherwise skip
-	COUNTRY=$(whois $IP_ADDRESS |grep country -i -m 1 |cut -d ':' -f 2 |xargs)
-	logLine=$IP_ADDRESS" "$COUNTRY" "$DATE
-	echo $logLine >> /var/webserver_log/unauthorized.log
+
+	currentDate=$(date --date=$DATE +%s)
+	if [[ $currentDate -gt $preDate ]]
+	then
+		COUNTRY=$(whois $IP_ADDRESS |grep country -i -m 1 |cut -d ':' -f 2 |xargs)
+		logLine=$IP_ADDRESS" "$COUNTRY" "$DATE
+		echo $logLine >> /var/webserver_log/unauthorized.log
+	fi
 done < <(sudo grep sshd\\[[0-9].\*Failed /var/log/auth.log)
