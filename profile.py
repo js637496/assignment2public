@@ -51,6 +51,9 @@ node_observer.addService(pg.Execute(shell="sh", command="sudo /local/repository/
 node_webserver.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/webserver_setup_complete.sh"))
 node_webserver.addService(pg.Execute(shell="sh", command="sudo /local/repository/webserver_setup_complete.sh"))
 
+node_observer.addService(pg.Execute(shell="sh", command="sudo chmod 755 /local/repository/observer_setup_complete.sh"))
+node_observer.addService(pg.Execute(shell="sh", command="sudo /local/repository/observer_setup_complete.sh"))
+
 
 # Print the generated rspec
 pc.printRequestRSpec(request)

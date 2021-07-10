@@ -3,19 +3,15 @@
 #Getting the last log entry date, make sure we only get logs after this date
 #Still some work to do on this part
 lastLog=$(tail -1 /var/webserver_log/unauthorized.log)
-echo $lastlog
 IFS=' ' read -r -a lastarray <<< "$lastLog"
 prevDateStr=${lastarray[2]}" "${lastarray[3]}" "${lastarray[4]}" "${lastarray[5]}
-echo $prevDateStr
 prevDate=$(date --date="$prevDateStr" +%s)
-echo $prevDate
 
 while read line
 do
 	DATE=""
 	IP_ADDRESS=""
 	array=""
-	#echo $line
 	IFS=' ' read -r -a array <<< "$line"
 	for index in "${!array[@]}"
 	do
@@ -28,7 +24,6 @@ do
 			fi
 			DATE+=${array[index]}" "
 		fi
-		echo $DATE
 
 		if [[ "${array[index]}" == "port" ]]
 		then
