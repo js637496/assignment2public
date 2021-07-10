@@ -22,7 +22,7 @@ do
 	do
 		if [[ "$index" -lt 4 ]]
 		then
-			if [[ "$index" -eq 3 ]]
+			if [[ "$index" -eq 2 ]]
 			then
 				year=$(date +"%Y")
 				DATE+=$year" "
