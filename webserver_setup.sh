@@ -5,7 +5,6 @@ sudo apt -y install whois
 
 #allow password ssh
 sudo mv /local/repository/sshd_config /etc/ssh/sshd_config
-sudo echo 'PasswordAuthentication yes' | sudo tee -a /etc/ssh/sshd_config
 sudo systemctl restart sshd
 
 sudo apt -y install nfs-common
