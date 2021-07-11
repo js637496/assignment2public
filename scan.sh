@@ -35,7 +35,7 @@ do
 	currentDate=$(date --date="$DATE" +%s)
 	if [[ $currentDate -gt $prevDate ]]
 	then
-		COUNTRY=$(whois $IP_ADDRESS | grep country -i -m 1 |cut -d ':' -f 2 | cut -c1-2 |xargs)
+		COUNTRY=$(whois $IP_ADDRESS | grep country -i -m 1 |cut -d ':' -f 2 |xargs | cut -c1-2)
 		logLine=$IP_ADDRESS" "$COUNTRY" "$DATE
 		sudo echo "$logLine" | sudo tee -a /var/webserver_log/unauthorized.log
 	fi
