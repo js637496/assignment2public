@@ -12,5 +12,6 @@ sudo ufw allow from 192.168.1.0/24 to any port nfs
 sudo ufw allow 22
 sudo ufw --force enable
 sudo ufw status
+sudo touch /var/webserver_monitor/nfs_is_working.txt
 
 sudo chmod 755 /local/repository/monitor.sh
