@@ -4,4 +4,8 @@ while [ ! -d /var/webserver_log/nfs_is_working.txt ]; do
   sleep 10
 done
 
-crontab -l | { cat; echo "*/5 * * * * sudo bash /local/repository/scan.sh"; } | crontab -
+export EDITOR=nano
+#set up the scan.sh cron job
+(
+    echo "*/5 * * * * sudo bash /local/repository/scan.sh"
+) | sudo crontab -u root -
