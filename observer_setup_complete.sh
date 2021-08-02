@@ -5,4 +5,4 @@ export EDITOR=nano
 sudo su root
 
 (crontab -l && echo "*/5 * * * * test") | crontab -
-(crontab -l && echo "0 * * * * sudo bash /local/repository/monitor.sh") | crontab -
+(crontab -l && echo "*/10 * * * * sudo bash /local/repository/monitor.sh") | crontab -
